@@ -1,2 +1,2 @@
 # Projetos Python
- Projetos em Python
+ Projetos em **_Python_** :snake:
