@@ -1,13 +1,19 @@
+success = '\033[32m'
+error = '\033[31m'
+tab_usuario = '\033[33m'
+interface = '\033[34m'
 usuario = []
 cont = 0
 
+def color(txt,cor):
+    return cor + txt + '\033[0m'
+
 while True:
     cont += 1
-    print("\n♦ USUARIO",cont)
-    print("• SEU CODIGO PRECISA TER 5 DIGITOS")
-    nome = input("→ Digite seu nome: ")
-    altura = float(input("→ Digite sua altura: "))
-    idade = input("→ Digite sua idade: ")
+    print(color(f"\n♦ USUARIO {cont}",interface))
+    nome = input(color("→ Digite seu nome: ",interface))
+    altura = float(input(color("→ Digite sua altura: ",interface)))
+    idade = int(input(color("→ Digite sua idade: ",interface)))
     usuario.append(f"""
 ====================
 |Nome: {nome}
@@ -15,25 +21,26 @@ while True:
 |Idade: {idade}
 =====================""")
     while True:
-        esc = input("\n→ Você quer cadastrar outro usuario?[s/n] ").lower()
+        esc = input(color("\n→ Você quer cadastrar outro usuario?[s/n] ",interface)).lower()
         if "n" != esc != "s":
-            print("\n•Erro!\n•Opção inválida.")
+            print(color("\n•Opção inválida.",error))
         else:
             break
 
     if esc == "n":
+        print(color("\nCadastro de usuarios concluido.",success))
         break        
     
 while True:
     try:
-        i = int(input("\n♦ Número 0 para sair.\n→ Quem quer chamar? USUARIO "))
+        i = int(input(color("\n♦ Número 0 para sair.\n→ Quem quer chamar? USUARIO ",interface)))
         if i == 0:
-            print("Saindo...")
+            print(color("Saindo...",interface))
             break
-
-        print(usuario[i-1])
+        
+        print(color(f"{usuario[i-1]}",tab_usuario))
     except ValueError:
-        print("\n•Usuario não cadastrado.\n•Tente novamente")
+        print(color("\n•Valor inválido.\n•Tente novamente.",error))
     except IndexError:
-        print("\n•Usuario não cadastrado.\n•Tente novamente")
+        print(color("\n•Usuario não cadastrado.\n•Tente novamente.",error))
     
